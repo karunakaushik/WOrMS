@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import './search.css'
+import React from 'react';
+import '../styles/search.css'
 const SearchBar = (props) => {
     const {searchTerm, onSearchChange} =props
     return (

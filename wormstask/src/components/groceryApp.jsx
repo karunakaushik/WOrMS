@@ -1,6 +1,4 @@
-
 import React, { useState } from 'react'
-
 const GroceryApp = (props) => {
     const fruits = [
         {
@@ -17,11 +15,9 @@ const GroceryApp = (props) => {
             id: 3,
             prod: 'Banana',
             votes: 0
-        },
-
+        }
     ]
     let [products, setProducts] = useState(fruits);
-
     const plus = (index) => {
         setProducts((prev) => {
             const updated = [...prev];
@@ -33,7 +29,6 @@ const GroceryApp = (props) => {
             return updated;
         });
     };
-
     const minus = (index) => {
         setProducts((prev) => {
             const updated = [...prev]
@@ -43,14 +38,10 @@ const GroceryApp = (props) => {
                     votes: updated[index].votes - 1
                 }
             }
-
-
             // console.log("minus", updated[index].votes);
-
             return updated;
         });
     };
-
     return (
         <ul className='container'>
             {products.map((item, index) => {
@@ -61,7 +52,6 @@ const GroceryApp = (props) => {
 
                 </li>
             })}
-
         </ul>
     );
 }

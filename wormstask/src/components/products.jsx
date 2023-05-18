@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import './products.css'
+import '../styles/products.css'
 import SearchBar from './search';
 import FormPost from './formPost';
 const initial = {
@@ -37,9 +37,11 @@ const Product = () => {
             console.error(error);
         }
     };
+     /*function to search post in list*/ 
     const filterProducts = () => {
         const filt = products?.filter((product) =>
-            product.title?.toLowerCase().includes(search.toLowerCase())
+            product.title?.toLowerCase().includes(search.toLowerCase()) ||
+            product.description?.toLowerCase().includes(search.toLowerCase())
         );
         setFiltered(filt);
     }
@@ -53,11 +55,11 @@ const Product = () => {
         if (currentPage > 1) {
             setCurrentPage(currentPage - 1);
         }
-    };
+    }; 
+    /*function to delete post from list*/ 
     const deleteHandel = (index) => {
         const updateProd = [...products];
         updateProd.splice(index, 1);
-        // console.log(updateProd);
         setProducts(updateProd);
     }
     const postHandel = (e) => {
@@ -67,6 +69,7 @@ const Product = () => {
             [name]: value
         });
     }
+    /*function to add post in list*/ 
     const onSubmit = (e) => {
         e.preventDefault();
         const updateProd = [...products];

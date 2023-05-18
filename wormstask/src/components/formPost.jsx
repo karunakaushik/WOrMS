@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import './formPost.css'
+import React from 'react';
+import '../styles/formPost.css'
 const FormPost = (props) => {
     const { onPostHandel, onSubmit, title, description } = props
     return (
@@ -23,7 +23,6 @@ const FormPost = (props) => {
                     required
                 />
                 <button type='submit' className='btn btn-success' onClick={onSubmit}>Post</button>
-
             </form>
         </div>
     );
