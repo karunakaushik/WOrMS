@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-
+import './search.css'
 const SearchBar = (props) => {
     const {searchTerm, onSearchChange} =props
     return (
         <>
         <span>Search : </span>
-        <input
+        <input className='searchBox'
             type="text"
-            placeholder="Search..."
+            placeholder="Search here..."
             value={searchTerm}
             onChange={onSearchChange}
         />

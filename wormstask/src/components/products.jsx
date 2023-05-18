@@ -14,15 +14,12 @@ const Product = () => {
     const [error, setError] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
     const [perPage] = useState(10);
-
     useEffect(() => {
         fetchProducts();
     }, []);
-
     useEffect(() => {
         filterProducts();
     }, [products, search]);
-
     const fetchProducts = async () => {
         try {
             const response = await fetch(
@@ -31,7 +28,6 @@ const Product = () => {
             if (!response.ok) {
                 throw new Error('failed to fetch Product')
             }
-
             const data = await response.json();
             setProducts(data.products);
             setError(null);
@@ -40,9 +36,7 @@ const Product = () => {
             setError('Error fetching products');
             console.error(error);
         }
-
     };
-
     const filterProducts = () => {
         const filt = products?.filter((product) =>
             product.title?.toLowerCase().includes(search.toLowerCase())
@@ -52,17 +46,14 @@ const Product = () => {
     const handelSearch = (e) => {
         setSearch(e.target.value)
     }
-
     const nextPage = () => {
         setCurrentPage(currentPage + 1);
     };
-
     const previousPage = () => {
         if (currentPage > 1) {
             setCurrentPage(currentPage - 1);
         }
     };
-
     const deleteHandel = (index) => {
         const updateProd = [...products];
         updateProd.splice(index, 1);
@@ -76,12 +67,9 @@ const Product = () => {
             [name]: value
         });
     }
-
     const onSubmit = (e) => {
         e.preventDefault();
-
         const updateProd = [...products];
-
         if (post.title === '' || post.description === '') {
             alert("Please enter Title and Description");
         }
@@ -91,27 +79,21 @@ const Product = () => {
             setPost(initial)
         }
     }
-
     const startIndex = (currentPage - 1) * perPage;
     const endIndex = startIndex + perPage;
     const LastPage = currentPage * perPage >= products.length;
-
     return (
         <div>
-            <FormPost title={post.title} description={post.description}  onSubmit={onSubmit} onPostHandel ={postHandel}/>
+            <FormPost title={post.title} description={post.description} onSubmit={onSubmit} onPostHandel={postHandel} />
             <SearchBar searchTerm={search} onSearchChange={handelSearch} />
-
             {error ? <div className='text-danger'> {error} </div> :
                 <>
                     <ol className='container d-flex flex-column'>
                         {/* without filter */}
-
                         {/* {products.slice(startIndex, endIndex).map((product, index) => (
                     <li className='list bg-light' key={product.id}> {product.id}.&nbsp; <strong>{product.title}</strong> : &nbsp; <p> {product.description}</p></li>
                 ))} */}
-
                         {/* With filter */}
-
                         {filtered.slice(startIndex, endIndex).map((product, index) => (
                             <li className='d-flex p-10 list bg-light' key={index}>&nbsp; <strong>{product.title}</strong> : &nbsp; <p> {product.description}</p>
                                 <button className='btn btn-danger' onClick={() => { deleteHandel(index) }} >Delete</button>
@@ -126,9 +108,6 @@ const Product = () => {
                         <button className='btn btn-primary' onClick={nextPage} disabled={LastPage}>Next Page</button>
                     </div>
                 </>
-
-
-
             }
 
         </div>

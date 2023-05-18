@@ -1,0 +1,6 @@
+.myForm{
+    gap: 6px;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: start;
+}
