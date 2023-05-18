@@ -1,0 +1,11 @@
+.list{
+    list-style: none;
+    text-align: start;
+    margin: 10px;
+    padding: 5px;
+    gap: 15px;
+}
+.btn{
+    height: min-content;
+}
+/* .btn{} */
