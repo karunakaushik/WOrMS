@@ -56,11 +56,10 @@ const Product = () => {
             setCurrentPage(currentPage - 1);
         }
     }; 
-    /*function to delete post from list*/ 
-    const deleteHandel = (index) => {
-        const updateProd = [...products];
-        updateProd.splice(index, 1);
-        setProducts(updateProd);
+    /*function to delete post from list Assuming here Title is unique*/ 
+    const deleteHandel = (productTitle) => {
+        const updatedProd = products.filter((product) => product.title !== productTitle);
+        setProducts(updatedProd);
     }
     const postHandel = (e) => {
         const { value, name } = e.target;
@@ -99,7 +98,7 @@ const Product = () => {
                         {/* With filter */}
                         {filtered.slice(startIndex, endIndex).map((product, index) => (
                             <li className='d-flex p-10 list bg-light' key={index}>&nbsp; <strong>{product.title}</strong> : &nbsp; <p> {product.description}</p>
-                                <button className='btn btn-danger' onClick={() => { deleteHandel(index) }} >Delete</button>
+                                <button className='btn btn-danger' onClick={() => { deleteHandel(product.title) }} >Delete</button>
                             </li>
                         ))}
                     </ol>
